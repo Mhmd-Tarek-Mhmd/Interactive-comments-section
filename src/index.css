@@ -24,6 +24,8 @@
 
   --headings-fw: var(--fw-bold);
   --headings-cl: var(--dark-blue);
+
+  --primary-cl: var(--moderate-blue);
 }
 
 /*
@@ -66,6 +68,9 @@ h2,
 h3 {
   color: var(--headings-cl);
   font-weight: var(--headings-fw);
+}
+strong {
+  font-weight: var(--fw-bold);
 }
 
 /*

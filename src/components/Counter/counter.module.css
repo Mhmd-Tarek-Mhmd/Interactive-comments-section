@@ -4,7 +4,7 @@
   display: flex;
   border-radius: 8px;
   align-items: center;
-  color: var(--moderate-blue);
+  color: var(--primary-cl);
   justify-content: space-evenly;
   background-color: var(--very-light-gray);
 }
@@ -33,7 +33,7 @@
 .counter button.active,
 .counter button:focus-visible,
 .counter button:hover:not(:disabled) {
-  color: var(--moderate-blue);
+  color: var(--primary-cl);
 }
 .counter button svg {
   pointer-events: none;

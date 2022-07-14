@@ -7,7 +7,7 @@
 }
 
 .iconButton:not(.del) {
-  color: var(--moderate-blue);
+  color: var(--primary-cl);
 }
 .del {
   color: var(--soft-red);
