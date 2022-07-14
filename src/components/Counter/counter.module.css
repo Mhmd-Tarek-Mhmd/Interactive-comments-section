@@ -1,0 +1,40 @@
+.counter {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  color: var(--moderate-blue);
+  justify-content: space-evenly;
+  background-color: var(--very-light-gray);
+}
+@media (min-width: 768px) {
+  .counter,
+  .counter button {
+    transform: rotate(90deg);
+  }
+  .counter strong {
+    transform: rotate(-90deg);
+  }
+}
+
+.counter button {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  will-change: color;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-grayish-blue);
+}
+.counter button:not(:disabled) {
+  cursor: pointer;
+}
+.counter button.active,
+.counter button:focus-visible,
+.counter button:hover:not(:disabled) {
+  color: var(--moderate-blue);
+}
+.counter button svg {
+  pointer-events: none;
+}
