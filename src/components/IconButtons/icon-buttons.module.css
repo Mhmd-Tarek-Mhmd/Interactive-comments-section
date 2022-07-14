@@ -1,0 +1,14 @@
+.iconButton {
+  gap: 8px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  font-weight: var(--fw-bold);
+}
+
+.iconButton:not(.del) {
+  color: var(--moderate-blue);
+}
+.del {
+  color: var(--soft-red);
+}
