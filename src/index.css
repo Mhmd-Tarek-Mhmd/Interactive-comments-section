@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+:root {
+  --soft-red: hsl(358, 79%, 66%);
+  --pale-red: hsl(357, 100%, 86%);
+  --moderate-blue: hsl(238, 40%, 52%);
+  --light-grayish-blue: hsl(239, 57%, 85%);
+
+  --dark-blue: hsl(212, 24%, 26%);
+  --grayish-blue: hsl(211, 10%, 45%);
+  --white: hsl(0, 0%, 100%);
+  --light-gray: hsl(223, 19%, 93%);
+  --very-light-gray: hsl(228, 33%, 97%);
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  --body-fs: 16px;
+  --body-ff: "Rubik", sans-serif;
+  --body-fs: var(--fw-regular);
+  --body-bgc: var(--light-gray);
+  --body-cl: var(--grayish-blue);
+
+  --headings-fw: var(--fw-bold);
+  --headings-cl: var(--dark-blue);
+}
+
+/*
+  Simple Reset
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  line-height: 1;
+  min-height: 100vh;
+  color: var(--body-cl);
+  font-size: var(--body-fs);
+  font-family: var(--body-ff);
+  font-weight: var(--body-fw);
+  background-color: var(--body-bgc);
+}
+button {
+  border: none;
+  background: none;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3 {
+  color: var(--headings-cl);
+  font-weight: var(--headings-fw);
+}
+
+/*
+  Global layout
+*/
+
+body {
+  padding-block: 65px;
+}
+#root {
+  max-width: 730px;
+  margin-inline: auto;
+}
+@media (max-width: 767px) {
+  body {
+    padding-block: 32px;
+    padding-inline: 16px;
+  }
+  #root {
+    max-width: 343px;
+  }
+}
