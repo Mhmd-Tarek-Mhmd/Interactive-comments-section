@@ -6,6 +6,8 @@ import {
   addComment,
   updateComment,
   removeComment,
+  increaseCommentScore,
+  decreaseCommentScore,
   addReply,
   updateReply,
   removeReply,
@@ -55,6 +57,9 @@ export const Provider = (props) => {
     dispatch(addComment(commentFormat(content, user)));
   actions.updateComment = (id, content) => dispatch(updateComment(id, content));
   actions.removeComment = (id) => dispatch(removeComment(id));
+
+  actions.increaseCommentScore = (id) => dispatch(increaseCommentScore(id));
+  actions.decreaseCommentScore = (id) => dispatch(decreaseCommentScore(id));
 
   actions.addReply = (content, user) =>
     dispatch(addReply(replyFormat(content, replyingTo, user)));

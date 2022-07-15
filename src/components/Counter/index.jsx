@@ -1,29 +1,35 @@
-import { useState } from "react";
+import { useContext } from "react";
+
+import Context from "../../context";
 
 import { counter, active } from "./counter.module.css";
 
-function Counter() {
-  const [count, setCount] = useState(2);
+function Counter({ id, score }) {
+  const { comments } = useContext(Context);
 
   const handleClick = (e, ele) => {
-    e.target.classList.add(active);
-    e.target.setAttribute("disabled", "");
-    ele.classList.remove(active);
-    ele.removeAttribute("disabled");
+    e.target.classList.toggle(active);
+    e.target.classList.contains(active)
+      ? ele.setAttribute("disabled", "")
+      : ele.removeAttribute("disabled");
   };
   const handleIncrease = (e) => {
-    setCount((prev) => prev + 1);
+    !e.target.classList.contains(active)
+      ? comments.actions.increaseCommentScore(id)
+      : comments.actions.decreaseCommentScore(id);
     handleClick(e, e.target.parentElement.lastElementChild);
   };
   const handleDecrease = (e) => {
-    if (count) {
-      setCount((prev) => prev - 1);
+    if (score) {
+      !e.target.classList.contains(active)
+        ? comments.actions.decreaseCommentScore(id)
+        : comments.actions.increaseCommentScore(id);
       handleClick(e, e.target.parentElement.firstElementChild);
     }
   };
 
   return (
-    <div className={counter} aria-label={`This comment's score is ${count}`}>
+    <div className={counter} aria-label={`This comment's score is ${score}`}>
       <button aria-label="Increase score" onClick={handleIncrease}>
         <svg
           aria-hidden="true"
@@ -39,11 +45,11 @@ function Counter() {
         </svg>
       </button>
 
-      <strong aria-hidden="true">{count}</strong>
+      <strong aria-hidden="true">{score}</strong>
 
       <button
         aria-label="Decrease score"
-        disabled={!Boolean(count)}
+        disabled={!Boolean(score)}
         onClick={handleDecrease}
       >
         <svg
