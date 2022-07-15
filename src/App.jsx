@@ -1,13 +1,14 @@
 import { useEffect, useContext } from "react";
 
 import Context from "./context";
+import { storageKey, getFromLocalStorage } from "./utils/helpers";
 
 function App() {
   const { authedUser, comments } = useContext(Context);
 
   useEffect(() => {
-    if (localStorage.comments) {
-      comments.actions.setComments(JSON.parse(localStorage.comments));
+    if (localStorage[storageKey]) {
+      comments.actions.setComments(getFromLocalStorage());
       fetch("data.json")
         .then((data) => data.json())
         .then((data) => authedUser.actions.setAuthedUser(data.currentUser));
