@@ -21,8 +21,11 @@ export default function reducer(state = [], action) {
       return [...state, action.comment];
     case UPDATE_COMMENT:
       return state.map((comment) => {
-        if (comment.id === action.id) comment.content = action.content;
-        return comment;
+        if (comment.id === action.id) {
+          return { ...comment, content: action.content };
+        } else {
+          return comment;
+        }
       });
     case REMOVE_COMMENT:
       return state.filter((comment) => comment.id !== action.id);
@@ -49,18 +52,46 @@ export default function reducer(state = [], action) {
     // Comments Reply
 
     case ADD_COMMENT_REPLY:
-      return [...state.replies, action.reply];
+      return state.map((comment) => {
+        if (comment.id === action.commentId) {
+          return {
+            ...comment,
+            replies: [...comment.replies, action.reply],
+          };
+        } else {
+          return comment;
+        }
+      });
     case UPDATE_COMMENT_REPLY:
       return state.map((comment) => {
-        if (comment.replies.id === action.id)
-          comment.replies.content = action.content;
-        return comment;
+        if (comment.replies.length) {
+          return {
+            ...comment,
+            replies: comment.replies.map((reply) => {
+              return reply.id === action.id
+                ? { ...reply, content: action.content }
+                : reply;
+            }),
+          };
+        } else {
+          return comment;
+        }
       });
     case REMOVE_COMMENT_REPLY:
-      return state.filter((comment) => comment.replies.id !== action.id);
+      return state.map((comment) => {
+        if (comment.replies.length) {
+          return {
+            ...comment,
+            replies: comment.replies.filter(
+              (comment) => comment.id !== action.id
+            ),
+          };
+        } else {
+          return comment;
+        }
+      });
 
     default:
-      console.log("test");
       throw new Error();
   }
 }

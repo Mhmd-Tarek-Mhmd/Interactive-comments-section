@@ -47,8 +47,9 @@ export const decreaseCommentScore = (id) => ({
 
 // comment reply
 
-export const addReply = (reply) => ({
+export const addReply = (commentId, reply) => ({
   type: ADD_COMMENT_REPLY,
+  commentId,
   reply,
 });
 export const updateReply = (id, content) => ({
