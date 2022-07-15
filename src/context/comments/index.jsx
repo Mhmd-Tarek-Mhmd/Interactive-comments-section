@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 import reducer from "./reducer";
 import {
@@ -41,6 +41,14 @@ const replyFormat = (content, replyingTo, user) => {
 };
 
 /*
+  Middleware
+*/
+
+const addToLocalStorage = (state) => {
+  localStorage.setItem("comments", JSON.stringify(state));
+};
+
+/*
   Context
 */
 
@@ -51,6 +59,12 @@ export const Context = createContext();
 export const Provider = (props) => {
   const [state, dispatch] = useReducer(reducer, []);
 
+  // addToLocalStorage when state changes (works as a middleware)
+  useEffect(() => {
+    state.length && addToLocalStorage(state);
+  }, [state]);
+
+  // Add actions
   actions.setComments = (comments) => dispatch(setComments(comments));
 
   actions.addComment = (content, user) =>

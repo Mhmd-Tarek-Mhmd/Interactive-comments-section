@@ -6,12 +6,19 @@ function App() {
   const { authedUser, comments } = useContext(Context);
 
   useEffect(() => {
-    fetch("data.json")
-      .then((data) => data.json())
-      .then((data) => {
-        authedUser.actions.setAuthedUser(data.currentUser);
-        comments.actions.setComments(data.comments);
-      });
+    if (localStorage.comments) {
+      comments.actions.setComments(JSON.parse(localStorage.comments));
+      fetch("data.json")
+        .then((data) => data.json())
+        .then((data) => authedUser.actions.setAuthedUser(data.currentUser));
+    } else {
+      fetch("data.json")
+        .then((data) => data.json())
+        .then((data) => {
+          authedUser.actions.setAuthedUser(data.currentUser);
+          comments.actions.setComments(data.comments);
+        });
+    }
   }, []);
 
   return <section aria-label="Comments section"></section>;
