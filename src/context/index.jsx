@@ -1,6 +1,9 @@
 import { createContext, useContext } from "react";
 
-import { Context as ModalContext, Provider as ModalProvider } from "./modal";
+import {
+  Context as ModalContext,
+  Provider as ModalProvider,
+} from "./confirmModal";
 import {
   Context as AuthedContext,
   Provider as AuthedProvider,
