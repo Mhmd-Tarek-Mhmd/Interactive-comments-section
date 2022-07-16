@@ -1,0 +1,61 @@
+.backdrop {
+  inset: 0;
+  position: fixed;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.backdrop:not([hidden]) {
+  display: grid;
+}
+
+.dialog {
+  gap: 16px;
+  width: 343px;
+  height: 224px;
+  display: grid;
+  align-content: end;
+  border-radius: 10px;
+  padding: 0 28px 24px;
+  background-color: var(--white);
+}
+@media (min-width: 768px) {
+  .dialog {
+    gap: 20px;
+    width: 400px;
+    height: 252px;
+    padding: 0 32px 32px;
+  }
+}
+
+.title {
+  font-size: 1.479em;
+  font-weight: var(--fw-medium);
+}
+.desc {
+  line-height: 1.5;
+}
+
+.dialog form {
+  gap: 14px;
+  display: grid;
+  color: var(--white);
+  grid-template-rows: 48px;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 767px) {
+  .dialog form {
+    gap: 12px;
+  }
+  .title {
+    font-size: 1.235em;
+  }
+}
+.dialog form * {
+  border-radius: 6px;
+}
+.dialog form :first-child {
+  background-color: var(--grayish-blue);
+}
+.dialog form :last-child {
+  background-color: var(--soft-red);
+}
