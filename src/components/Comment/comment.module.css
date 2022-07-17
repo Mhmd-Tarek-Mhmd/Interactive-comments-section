@@ -1,0 +1,12 @@
+.controls {
+  gap: 18px;
+  align-items: center;
+}
+.controls:not([hidden]) {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .controls {
+    gap: 26px;
+  }
+}
