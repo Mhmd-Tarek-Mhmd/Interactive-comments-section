@@ -1,3 +1,33 @@
+.top,
+.info,
+.username {
+  display: flex;
+  align-items: center;
+}
+.top {
+  justify-content: space-between;
+}
+.info {
+  gap: 16px;
+}
+.info img {
+  width: 32px;
+  height: 32px;
+}
+.username {
+  gap: 9px;
+}
+.username span {
+  width: 36px;
+  height: 19px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 2px;
+  color: var(--white);
+  padding-inline: 6px;
+  background-color: var(--primary-cl);
+}
+
 .controls {
   gap: 18px;
   align-items: center;
