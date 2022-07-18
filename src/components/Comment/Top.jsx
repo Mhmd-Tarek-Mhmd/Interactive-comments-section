@@ -8,10 +8,10 @@ import { top, info, username } from "./comment.module.css";
 
 function Top({ user, timestamp }) {
   const { authedUser } = useContext(Context);
-  const [isHidden, setTsHidden] = useState(window.innerWidth < 767);
+  const [isHidden, setIsHidden] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const cb = () => setTsHidden(window.innerWidth < 767);
+    const cb = () => setIsHidden(window.innerWidth < 768);
     window.addEventListener("resize", cb);
     return () => window.removeEventListener("resize", cb);
   }, []);
