@@ -3,7 +3,12 @@
   display: flex;
   cursor: pointer;
   align-items: center;
+  will-change: opacity;
   font-weight: var(--fw-bold);
+}
+.iconButton:focus-visible,
+.iconButton:hover {
+  opacity: 0.5;
 }
 
 .iconButton:not(.del) {
