@@ -22,7 +22,11 @@ function Comment({ comment, parentId }) {
           <Counter id={comment.id} parentId={parentId} score={comment.score} />
         )}
         <div>
-          <Top user={comment.user} timestamp={comment.createdAt} />
+          <Top
+            user={comment.user}
+            timestamp={comment.createdAt}
+            isMobileMedia={isMobileMedia}
+          />
           <Content replyingTo={comment?.replyingTo} content={comment.content} />
           {isMobileMedia && (
             <Bottom
