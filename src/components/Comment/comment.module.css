@@ -30,6 +30,14 @@
   background-color: var(--primary-cl);
 }
 
+.contentTxt {
+  line-height: 1.4;
+  margin-block: 16px 18px;
+}
+.contentTxt strong {
+  color: var(--primary-cl);
+}
+
 .controls {
   gap: 18px;
   align-items: center;
