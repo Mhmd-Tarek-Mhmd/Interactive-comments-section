@@ -1,10 +1,12 @@
 .top,
 .info,
-.username {
+.username,
+.bottom {
   display: flex;
   align-items: center;
 }
-.top {
+.top,
+.bottom {
   justify-content: space-between;
 }
 .info {
