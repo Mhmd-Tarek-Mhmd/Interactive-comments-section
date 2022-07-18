@@ -8,6 +8,8 @@ import {
   ADD_COMMENT_REPLY,
   UPDATE_COMMENT_REPLY,
   REMOVE_COMMENT_REPLY,
+  INCREASE_REPLY_SCORE,
+  DECREASE_REPLY_SCORE,
 } from "./actions";
 
 export default function reducer(state = [], action) {
@@ -85,6 +87,43 @@ export default function reducer(state = [], action) {
             replies: comment.replies.filter(
               (comment) => comment.id !== action.id
             ),
+          };
+        } else {
+          return comment;
+        }
+      });
+
+    // Comment Reply Score
+
+    case INCREASE_REPLY_SCORE:
+      return state.map((comment) => {
+        if (comment.id === action.commentId) {
+          const reply = comment.replies.find((r) => r.id === action.id);
+
+          return {
+            ...comment,
+            replies: comment.replies.map((r) => {
+              return r.id !== action.id
+                ? r
+                : { ...reply, score: reply.score + 1 };
+            }),
+          };
+        } else {
+          return comment;
+        }
+      });
+    case DECREASE_REPLY_SCORE:
+      return state.map((comment) => {
+        if (comment.id === action.commentId) {
+          const reply = comment.replies.find((r) => r.id === action.id);
+
+          return {
+            ...comment,
+            replies: comment.replies.map((r) => {
+              return r.id !== action.id
+                ? r
+                : { ...reply, score: reply.score - 1 };
+            }),
           };
         } else {
           return comment;

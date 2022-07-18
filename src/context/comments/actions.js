@@ -11,6 +11,9 @@ export const ADD_COMMENT_REPLY = "ADD_COMMENT_REPLY";
 export const UPDATE_COMMENT_REPLY = "UPDATE_COMMENT_REPLY";
 export const REMOVE_COMMENT_REPLY = "REMOVE_COMMENT_REPLY";
 
+export const INCREASE_REPLY_SCORE = "INCREASE_REPLY_SCORE";
+export const DECREASE_REPLY_SCORE = "DECREASE_REPLY_SCORE";
+
 // Actions
 
 export const setComments = (comments) => ({
@@ -59,5 +62,18 @@ export const updateReply = (id, content) => ({
 });
 export const removeReply = (id) => ({
   type: REMOVE_COMMENT_REPLY,
+  id,
+});
+
+// comment reply score
+
+export const increaseReplyScore = (commentId, id) => ({
+  type: INCREASE_REPLY_SCORE,
+  commentId,
+  id,
+});
+export const decreaseReplyScore = (commentId, id) => ({
+  type: DECREASE_REPLY_SCORE,
+  commentId,
   id,
 });

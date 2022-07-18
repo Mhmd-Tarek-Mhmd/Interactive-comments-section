@@ -18,6 +18,8 @@ import {
   addReply,
   updateReply,
   removeReply,
+  increaseReplyScore,
+  decreaseReplyScore,
 } from "./actions";
 
 const actions = {};
@@ -50,6 +52,11 @@ export const Provider = (props) => {
     );
   actions.updateReply = (id, content) => dispatch(updateReply(id, content));
   actions.removeReply = (id) => dispatch(removeReply(id));
+
+  actions.increaseReplyScore = (commentId, id) =>
+    dispatch(increaseReplyScore(commentId, id));
+  actions.decreaseReplyScore = (commentId, id) =>
+    dispatch(decreaseReplyScore(commentId, id));
 
   return (
     <Context.Provider value={{ state, actions }}>
