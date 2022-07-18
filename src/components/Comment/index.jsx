@@ -6,11 +6,11 @@ import Bottom from "./Bottom";
 import Counter from "../Counter";
 import { commentWrapper } from "./comment.module.css";
 
-function Comment({ comment, replyId, replyingTo }) {
+function Comment({ comment, parentId }) {
   const [isMobileMedia, setIsMobileMedia] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const cb = () => setIsMobileMedia(window.innerWidth < 767);
+    const cb = () => setIsMobileMedia(window.innerWidth < 768);
     window.addEventListener("resize", cb);
     return () => window.removeEventListener("resize", cb);
   }, []);
@@ -19,15 +19,15 @@ function Comment({ comment, replyId, replyingTo }) {
     comment && (
       <article className={commentWrapper}>
         {!isMobileMedia && (
-          <Counter commentId={comment.id} score={comment.score} />
+          <Counter id={comment.id} parentId={parentId} score={comment.score} />
         )}
         <div>
           <Top user={comment.user} timestamp={comment.createdAt} />
-          <Content replyingTo={replyingTo} content={comment.content} />
+          <Content replyingTo={comment?.replyingTo} content={comment.content} />
           {isMobileMedia && (
             <Bottom
-              commentId={comment.id}
-              replyId={replyId}
+              id={comment.id}
+              parentId={parentId}
               score={comment.score}
               username={comment.user.username}
             />
