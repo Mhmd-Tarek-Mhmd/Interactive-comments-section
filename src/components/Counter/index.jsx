@@ -4,29 +4,35 @@ import Context from "../../context";
 
 import { counter, active } from "./counter.module.css";
 
-function Counter({ commentId, replyId, score }) {
-  const ref = useRef();
+function Counter({ id, parentId, score }) {
+  const increaseRef = useRef();
+  const decreaseRef = useRef();
   const { comments } = useContext(Context);
 
   useEffect(() => {
     if (!score) {
-      !ref.current.classList.contains(active) &&
-        ref.current.setAttribute("disabled", "");
+      !decreaseRef.current.classList.contains(active) &&
+        decreaseRef.current.setAttribute("disabled", "");
     } else {
-      ref.current.removeAttribute("disabled");
+      !increaseRef.current.classList.contains(active) &&
+        decreaseRef.current.removeAttribute("disabled");
     }
   }, [score]);
 
+  // Actions
+
   const increase = () => {
-    replyId
-      ? comments.actions.increaseReplyScore(commentId, replyId)
-      : comments.actions.increaseCommentScore(commentId);
+    parentId
+      ? comments.actions.increaseReplyScore(parentId, id)
+      : comments.actions.increaseCommentScore(id);
   };
   const decrease = () => {
-    replyId
-      ? comments.actions.decreaseReplyScore(commentId, replyId)
-      : comments.actions.decreaseCommentScore(commentId);
+    parentId
+      ? comments.actions.decreaseReplyScore(parentId, id)
+      : comments.actions.decreaseCommentScore(id);
   };
+
+  // Helpers
 
   const handleClick = (e, ele) => {
     e.target.classList.toggle(active);
@@ -34,19 +40,22 @@ function Counter({ commentId, replyId, score }) {
       ? ele.setAttribute("disabled", "")
       : ele.removeAttribute("disabled");
   };
-
   const handleIncrease = (e) => {
     !e.target.classList.contains(active) ? increase() : decrease();
-    handleClick(e, e.target.parentElement.lastElementChild);
+    handleClick(e, decreaseRef.current);
   };
   const handleDecrease = (e) => {
     !e.target.classList.contains(active) ? decrease() : increase();
-    handleClick(e, e.target.parentElement.firstElementChild);
+    handleClick(e, increaseRef.current);
   };
 
   return (
     <div className={counter} aria-label={`This comment's score is ${score}`}>
-      <button aria-label="Increase score" onClick={handleIncrease}>
+      <button
+        ref={increaseRef}
+        aria-label="Increase score"
+        onClick={handleIncrease}
+      >
         <svg
           aria-hidden="true"
           focusable="false"
@@ -63,7 +72,11 @@ function Counter({ commentId, replyId, score }) {
 
       <strong aria-hidden="true">{score}</strong>
 
-      <button ref={ref} aria-label="Decrease score" onClick={handleDecrease}>
+      <button
+        ref={decreaseRef}
+        aria-label="Decrease score"
+        onClick={handleDecrease}
+      >
         <svg
           aria-hidden="true"
           focusable="false"
