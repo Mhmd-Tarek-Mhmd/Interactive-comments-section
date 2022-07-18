@@ -1,11 +1,32 @@
-import { useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 
 import Context from "../../context";
 
 import { counter, active } from "./counter.module.css";
 
-function Counter({ id, score }) {
+function Counter({ commentId, replyId, score }) {
+  const ref = useRef();
   const { comments } = useContext(Context);
+
+  useEffect(() => {
+    if (!score) {
+      !ref.current.classList.contains(active) &&
+        ref.current.setAttribute("disabled", "");
+    } else {
+      ref.current.removeAttribute("disabled");
+    }
+  }, [score]);
+
+  const increase = () => {
+    replyId
+      ? comments.actions.increaseReplyScore(commentId, replyId)
+      : comments.actions.increaseCommentScore(commentId);
+  };
+  const decrease = () => {
+    replyId
+      ? comments.actions.decreaseReplyScore(commentId, replyId)
+      : comments.actions.decreaseCommentScore(commentId);
+  };
 
   const handleClick = (e, ele) => {
     e.target.classList.toggle(active);
@@ -13,19 +34,14 @@ function Counter({ id, score }) {
       ? ele.setAttribute("disabled", "")
       : ele.removeAttribute("disabled");
   };
+
   const handleIncrease = (e) => {
-    !e.target.classList.contains(active)
-      ? comments.actions.increaseCommentScore(id)
-      : comments.actions.decreaseCommentScore(id);
+    !e.target.classList.contains(active) ? increase() : decrease();
     handleClick(e, e.target.parentElement.lastElementChild);
   };
   const handleDecrease = (e) => {
-    if (score) {
-      !e.target.classList.contains(active)
-        ? comments.actions.decreaseCommentScore(id)
-        : comments.actions.increaseCommentScore(id);
-      handleClick(e, e.target.parentElement.firstElementChild);
-    }
+    !e.target.classList.contains(active) ? decrease() : increase();
+    handleClick(e, e.target.parentElement.firstElementChild);
   };
 
   return (
@@ -47,11 +63,7 @@ function Counter({ id, score }) {
 
       <strong aria-hidden="true">{score}</strong>
 
-      <button
-        aria-label="Decrease score"
-        disabled={!Boolean(score)}
-        onClick={handleDecrease}
-      >
+      <button ref={ref} aria-label="Decrease score" onClick={handleDecrease}>
         <svg
           aria-hidden="true"
           focusable="false"
