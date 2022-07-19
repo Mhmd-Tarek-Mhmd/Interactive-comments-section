@@ -28,12 +28,12 @@
 .bottom {
   justify-content: space-between;
 }
-
 .info {
   gap: 16px;
 }
-.info picture,
-.info img {
+
+.userImage,
+.userImage img {
   width: 32px;
   height: 32px;
 }
