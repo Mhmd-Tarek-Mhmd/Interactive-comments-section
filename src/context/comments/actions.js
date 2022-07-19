@@ -55,13 +55,15 @@ export const addReply = (commentId, reply) => ({
   commentId,
   reply,
 });
-export const updateReply = (id, content) => ({
+export const updateReply = (commentId, id, content) => ({
   type: UPDATE_COMMENT_REPLY,
+  commentId,
   id,
   content,
 });
-export const removeReply = (id) => ({
+export const removeReply = (commentId, id) => ({
   type: REMOVE_COMMENT_REPLY,
+  commentId,
   id,
 });
 

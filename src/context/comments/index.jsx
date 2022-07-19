@@ -50,8 +50,8 @@ export const Provider = (props) => {
     dispatch(
       addReply(commentId, replyFormat(content, replyingTo, authedUser.state))
     );
-  actions.updateReply = (id, content) => dispatch(updateReply(id, content));
-  actions.removeReply = (id) => dispatch(removeReply(id));
+  actions.updateReply = (commentId, id, content) => dispatch(updateReply(commentId,id, content));
+  actions.removeReply = (commentId, id) => dispatch(removeReply(commentId, id));
 
   actions.increaseReplyScore = (commentId, id) =>
     dispatch(increaseReplyScore(commentId, id));

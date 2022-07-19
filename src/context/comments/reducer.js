@@ -66,13 +66,15 @@ export default function reducer(state = [], action) {
       });
     case UPDATE_COMMENT_REPLY:
       return state.map((comment) => {
-        if (comment.replies.length) {
+        if (comment.id === action.commentId) {
+          const reply = comment.replies.find((r) => r.id === action.id);
+
           return {
             ...comment,
-            replies: comment.replies.map((reply) => {
-              return reply.id === action.id
+            replies: comment.replies.map((r) => {
+              return r.id === action.id
                 ? { ...reply, content: action.content }
-                : reply;
+                : r;
             }),
           };
         } else {
@@ -81,12 +83,10 @@ export default function reducer(state = [], action) {
       });
     case REMOVE_COMMENT_REPLY:
       return state.map((comment) => {
-        if (comment.replies.length) {
+        if (comment.id === action.commentId) {
           return {
             ...comment,
-            replies: comment.replies.filter(
-              (comment) => comment.id !== action.id
-            ),
+            replies: comment.replies.filter((reply) => reply.id !== action.id),
           };
         } else {
           return comment;
