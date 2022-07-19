@@ -1,11 +1,45 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import Context from "../../context";
 
 import { backdrop, dialog, title, desc } from "./modal.module.css";
 
 function Modal() {
+  const confirm = useRef();
+  const cancel = useRef();
   const { modal } = useContext(Context);
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    const handleTrapFocus = (e) => {
+      if (e.key !== "Tab") return;
+      switch (document.activeElement) {
+        case cancel.current:
+          if (e.shiftKey) {
+            e.preventDefault();
+            confirm.current.focus();
+          }
+          break;
+        case confirm.current:
+          if (!e.shiftKey) {
+            e.preventDefault();
+            cancel.current.focus();
+          }
+          break;
+      }
+    };
+
+    if (modal.isOpened) {
+      cancel.current.focus();
+      html.style.overflow = "hidden";
+      window.addEventListener("keydown", handleTrapFocus);
+    } else {
+      html.style.overflow = "auto";
+      window.removeEventListener("keydown", handleTrapFocus);
+    }
+
+    return () => window.removeEventListener("keydown", handleTrapFocus);
+  }, [modal.isOpened]);
 
   return (
     <div className={backdrop} hidden={!modal.isOpened}>
@@ -25,8 +59,12 @@ function Modal() {
         </p>
 
         <form method="dialog">
-          <button onClick={modal.actions.onCancel}>No, Cancel</button>
-          <button onClick={modal.actions.onConfirm}>Ok, Delete</button>
+          <button ref={cancel} onClick={modal.actions.onCancel}>
+            No, Cancel
+          </button>
+          <button ref={confirm} onClick={modal.actions.onConfirm}>
+            Ok, Delete
+          </button>
         </form>
       </div>
     </div>
