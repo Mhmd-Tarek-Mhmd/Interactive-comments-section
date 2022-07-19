@@ -7,7 +7,7 @@ import UserImage from "./UserImage";
 import Controls from "./Controls.jsx";
 import { top, info, username } from "./comment.module.css";
 
-function Top({ user, timestamp, isMobileMedia }) {
+function Top({ user, timestamp, isMobileMedia, id, parentId }) {
   const { authedUser } = useContext(Context);
 
   const date = typeof timestamp !== "number" ? "" : new Date(timestamp);
@@ -28,7 +28,12 @@ function Top({ user, timestamp, isMobileMedia }) {
           </time>
         </div>
 
-        <Controls username={user.username} isHidden={isMobileMedia} />
+        <Controls
+          id={id}
+          parentId={parentId}
+          username={user.username}
+          isHidden={isMobileMedia}
+        />
       </div>
     )
   );

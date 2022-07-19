@@ -23,6 +23,8 @@ function Comment({ comment, parentId }) {
         )}
         <div>
           <Top
+            id={comment.id}
+            parentId={parentId}
             user={comment.user}
             timestamp={comment.createdAt}
             isMobileMedia={isMobileMedia}

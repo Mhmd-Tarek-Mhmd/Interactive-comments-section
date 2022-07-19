@@ -6,7 +6,7 @@ function Bottom({ id, parentId, score, username }) {
   return (
     <div className={bottom}>
       <Counter id={id} parentId={parentId} score={score} />
-      <Controls username={username} />
+      <Controls id={id} parentId={parentId} username={username} />
     </div>
   );
 }
