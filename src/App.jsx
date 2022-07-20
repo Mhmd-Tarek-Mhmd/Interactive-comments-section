@@ -5,6 +5,7 @@ import { useFetch } from "./hooks";
 import { storageKey, getFromLocalStorage } from "./utils/helpers";
 
 import Grid from "./components/Grid";
+import { Add } from "./components/Forms";
 
 function App() {
   const { authedUser, comments } = useContext(Context);
@@ -22,6 +23,7 @@ function App() {
   return (
     <section aria-label="Comments section">
       <Grid />
+      {authedUser.state && <Add />}
     </section>
   );
 }
