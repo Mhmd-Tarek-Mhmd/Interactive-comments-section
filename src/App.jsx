@@ -21,10 +21,10 @@ function App() {
   }, [data]);
 
   return (
-    <section aria-label="Comments section">
+    <div role="region" aria-label="Comments section">
       <Grid />
       {authedUser.state && <Add />}
-    </section>
+    </div>
   );
 }
 
