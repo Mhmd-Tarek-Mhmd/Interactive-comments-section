@@ -12,6 +12,7 @@ function Modal() {
   useEffect(() => {
     const html = document.querySelector("html");
     const handleTrapFocus = (e) => {
+      if (e.key === "Escape") cancel.current.click();
       if (e.key !== "Tab") return;
       switch (document.activeElement) {
         case cancel.current:
