@@ -25,6 +25,7 @@
 }
 @media (max-width: 767px) {
   .addForm {
+    align-items: end;
     grid-template-columns: 1fr 1fr;
   }
   .addForm textarea {
