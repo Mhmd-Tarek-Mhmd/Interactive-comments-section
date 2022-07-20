@@ -15,6 +15,7 @@ function Add({ parent, toggleIsAddReply }) {
       ? comments.actions.addReply(parent.id, content, parent.user.username)
       : comments.actions.addComment(content);
 
+    setContent("");
     toggleIsAddReply && toggleIsAddReply();
   };
 
@@ -25,7 +26,7 @@ function Add({ parent, toggleIsAddReply }) {
     >
       <UserImage user={authedUser.state} />
       <textarea
-        defaultValue={content}
+        value={content}
         placeholder={`Add a ${parent ? "reply" : "comment"}...`}
         onChange={(e) => setContent(e.target.value)}
       />
