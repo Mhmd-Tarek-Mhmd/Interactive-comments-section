@@ -5,7 +5,14 @@ import Context from "../../context";
 import { Reply, Edit, Delete } from "../IconButtons";
 import { controls } from "./comment.module.css";
 
-function Controls({ toggleIsUpdate, username, isHidden, id, parentId }) {
+function Controls({
+  toggleIsUpdate,
+  toggleIsAddReply,
+  username,
+  isHidden,
+  id,
+  parentId,
+}) {
   const { authedUser, comments, modal } = useContext(Context);
 
   const handleDelete = async () => {
@@ -26,7 +33,7 @@ function Controls({ toggleIsUpdate, username, isHidden, id, parentId }) {
           <Edit onClick={toggleIsUpdate} />
         </>
       ) : (
-        <Reply />
+        <Reply onClick={toggleIsAddReply} />
       )}
     </div>
   );

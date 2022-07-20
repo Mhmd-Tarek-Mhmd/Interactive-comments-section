@@ -7,7 +7,7 @@ import UserImage from "./UserImage";
 import Controls from "./Controls.jsx";
 import { top, info, username } from "./comment.module.css";
 
-function Top({ user, timestamp, isMobileMedia, id, parentId }) {
+function Top({ user, timestamp, isMobileMedia, id, parentId, toggleIsUpdate, toggleIsAddReply }) {
   const { authedUser } = useContext(Context);
 
   const date = typeof timestamp !== "number" ? "" : new Date(timestamp);
@@ -33,6 +33,8 @@ function Top({ user, timestamp, isMobileMedia, id, parentId }) {
           parentId={parentId}
           username={user.username}
           isHidden={isMobileMedia}
+          toggleIsUpdate={toggleIsUpdate}
+          toggleIsAddReply={toggleIsAddReply}
         />
       </div>
     )
