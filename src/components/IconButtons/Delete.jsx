@@ -1,8 +1,8 @@
 import { iconButton, del } from "./icon-buttons.module.css";
 
-function Delete() {
+function Delete(props) {
   return (
-    <button className={`${iconButton} ${del}`}>
+    <button className={`${iconButton} ${del}`} {...props}>
       <svg
         aria-hidden="true"
         focusable="false"

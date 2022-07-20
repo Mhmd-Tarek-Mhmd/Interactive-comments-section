@@ -1,8 +1,8 @@
 import { iconButton } from "./icon-buttons.module.css";
 
-function Reply() {
+function Reply(props) {
   return (
-    <button className={iconButton}>
+    <button className={iconButton} {...props}>
       <svg
         aria-hidden="true"
         focusable="false"
