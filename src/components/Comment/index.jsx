@@ -7,6 +7,7 @@ import Counter from "../Counter";
 import { commentWrapper } from "./comment.module.css";
 
 function Comment({ comment, parentId }) {
+  const [isUpdate, setIsUpdate] = useState(false);
   const [isMobileMedia, setIsMobileMedia] = useState(window.innerWidth < 768);
 
   useEffect(() => {
@@ -15,27 +16,38 @@ function Comment({ comment, parentId }) {
     return () => window.removeEventListener("resize", cb);
   }, []);
 
+  const toggleIsUpdate = () => setIsUpdate(!isUpdate);
+
   return (
     comment && (
       <article className={commentWrapper}>
         {!isMobileMedia && (
           <Counter id={comment.id} parentId={parentId} score={comment.score} />
         )}
-        <div>
+        <div style={{ width: "100%" }}>
           <Top
             id={comment.id}
             parentId={parentId}
             user={comment.user}
             timestamp={comment.createdAt}
             isMobileMedia={isMobileMedia}
+            toggleIsUpdate={toggleIsUpdate}
           />
-          <Content replyingTo={comment?.replyingTo} content={comment.content} />
+          <Content
+            id={comment.id}
+            parentId={parentId}
+            isUpdate={isUpdate}
+            replyingTo={comment?.replyingTo}
+            content={comment.content}
+            toggleIsUpdate={toggleIsUpdate}
+          />
           {isMobileMedia && (
             <Bottom
               id={comment.id}
               parentId={parentId}
               score={comment.score}
               username={comment.user.username}
+              toggleIsUpdate={toggleIsUpdate}
             />
           )}
         </div>
