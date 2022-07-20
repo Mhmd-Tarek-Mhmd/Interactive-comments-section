@@ -4,6 +4,8 @@ import Context from "./context";
 import { useFetch } from "./hooks";
 import { storageKey, getFromLocalStorage } from "./utils/helpers";
 
+import Grid from "./components/Grid";
+
 function App() {
   const { authedUser, comments } = useContext(Context);
   const [data] = useFetch("data.json");
@@ -17,7 +19,11 @@ function App() {
     }
   }, [data]);
 
-  return <section aria-label="Comments section"></section>;
+  return (
+    <section aria-label="Comments section">
+      <Grid />
+    </section>
+  );
 }
 
 export default App;

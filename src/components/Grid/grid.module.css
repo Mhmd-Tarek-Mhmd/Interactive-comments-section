@@ -1,0 +1,34 @@
+.grid,
+.replies {
+  --gap: 16px;
+  display: grid;
+  gap: var(--gap);
+}
+.replies {
+  position: relative;
+  margin-top: var(--gap);
+  -webkit-padding-start: var(--gap);
+  padding-inline-start: var(--gap);
+}
+.replies::before {
+  width: 1px;
+  height: 100%;
+  content: "";
+  opacity: 0.3;
+  position: absolute;
+  border-radius: 4px;
+  background-color: var(--light-grayish-blue);
+}
+@media (min-width: 768px) {
+  .grid,
+  .replies {
+    --gap: 18px;
+  }
+  .replies {
+    -webkit-padding-start: 85px;
+    padding-inline-start: 85px;
+  }
+  .replies::before {
+    left: 42px;
+  }
+}
