@@ -1,0 +1,68 @@
+.addForm {
+  display: grid;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--white);
+}
+.addForm.reply {
+  margin-top: 8px;
+}
+.addForm.comment {
+  margin-top: 16px;
+}
+@media (min-width: 768px) {
+  .addForm {
+    gap: 16px;
+    grid-template-columns: 40px 1fr 104px;
+  }
+  .addForm img {
+    width: 40px;
+    height: 40px;
+  }
+  .addForm.comment {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .addForm {
+    grid-template-columns: 1fr 1fr;
+  }
+  .addForm textarea {
+    order: -1;
+    grid-column: span 3;
+    margin-bottom: 16px;
+  }
+}
+
+.addForm textarea,
+.updateForm textarea {
+  resize: none;
+  width: 100%;
+  height: 124px;
+  line-height: 1.4;
+  border-radius: 8px;
+  padding: 16px 24px;
+  border-color: var(--primary-cl);
+}
+.updateForm textarea {
+  margin-block: 16px;
+}
+
+.addForm button,
+.updateForm button {
+  width: 104px;
+  height: 48px;
+  display: block;
+  border-radius: 8px;
+  color: var(--white);
+  text-transform: uppercase;
+  -webkit-margin-start: auto;
+  margin-inline-start: auto;
+  background-color: var(--primary-cl);
+}
+.addForm button:hover,
+.addForm button:focus-visible,
+.updateForm button:hover,
+.updateForm button:focus-visible {
+  opacity: 0.5;
+}
