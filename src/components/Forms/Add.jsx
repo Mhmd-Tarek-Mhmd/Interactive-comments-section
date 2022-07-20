@@ -26,6 +26,7 @@ function Add({ parent, toggleIsAddReply }) {
       <UserImage user={authedUser.state} />
       <textarea
         defaultValue={content}
+        placeholder={`Add a ${parent ? "reply" : "comment"}...`}
         onChange={(e) => setContent(e.target.value)}
       />
       <button>{parent ? "Reply" : "Send"}</button>
