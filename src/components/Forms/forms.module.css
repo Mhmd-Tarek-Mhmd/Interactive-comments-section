@@ -45,6 +45,7 @@
   border-radius: 8px;
   padding: 16px 24px;
   will-change: border-color;
+  caret-color: var(--primary-cl);
   border-color: var(--light-gray);
 }
 .addForm textarea:focus,
