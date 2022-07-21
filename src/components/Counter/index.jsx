@@ -1,10 +1,12 @@
 import { useRef, useContext, useEffect } from "react";
 
 import Context from "../../context";
+import { addToLocalStorage, getFromLocalStorage } from "../../utils/helpers";
 
 import { counter, active } from "./counter.module.css";
 
 function Counter({ id, parentId, score }) {
+  const key = "score";
   const increaseRef = useRef();
   const decreaseRef = useRef();
   const { comments } = useContext(Context);
@@ -19,6 +21,36 @@ function Counter({ id, parentId, score }) {
     }
   }, [score]);
 
+  useEffect(() => {
+    if (localStorage.score) {
+      const IDs = comments.state
+        .map((d) => {
+          if (d.replies.length) {
+            return [d.id, ...d.replies.map((r) => r.id)];
+          } else {
+            return d.id;
+          }
+        })
+        .flat();
+      const helper = (...args) => {
+        args[0].current.classList.add(active);
+        args[1].current.setAttribute("disabled", "");
+      };
+
+      getFromLocalStorage(key).forEach((d) => {
+        // Restore increase/decrease actions views
+        if (d.id === id) {
+          d.action === "increase"
+            ? helper(increaseRef, decreaseRef)
+            : helper(decreaseRef, increaseRef);
+        }
+
+        // Remove deleted comments
+        !IDs.includes(d.id) && filterStorage(d.id);
+      });
+    }
+  }, []);
+
   // Actions
 
   const increase = () => {
@@ -31,6 +63,20 @@ function Counter({ id, parentId, score }) {
       ? comments.actions.decreaseReplyScore(parentId, id)
       : comments.actions.decreaseCommentScore(id);
   };
+  const AddStorage = (action) => {
+    const newObj = { id, action };
+    let obj = localStorage[key]
+      ? [...getFromLocalStorage(key), newObj]
+      : [newObj];
+
+    addToLocalStorage(obj, key);
+  };
+  const filterStorage = (ID = id) => {
+    addToLocalStorage(
+      getFromLocalStorage(key).filter((a) => a.id !== ID),
+      key
+    );
+  };
 
   // Helpers
 
@@ -41,11 +87,24 @@ function Counter({ id, parentId, score }) {
       : ele.removeAttribute("disabled");
   };
   const handleIncrease = (e) => {
-    !e.target.classList.contains(active) ? increase() : decrease();
+    if (!e.target.classList.contains(active)) {
+      increase();
+      AddStorage("increase");
+    } else {
+      decrease();
+      filterStorage();
+    }
     handleClick(e, decreaseRef.current);
   };
   const handleDecrease = (e) => {
-    !e.target.classList.contains(active) ? decrease() : increase();
+    if (!e.target.classList.contains(active)) {
+      decrease();
+      AddStorage("decrease");
+    } else {
+      increase();
+      filterStorage();
+    }
+
     handleClick(e, increaseRef.current);
   };
 

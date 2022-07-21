@@ -1,9 +1,10 @@
 export const storageKey = "comments";
 
-export const addToLocalStorage = (state) =>
-  localStorage.setItem(storageKey, JSON.stringify(state));
+export const addToLocalStorage = (state, key = storageKey) =>
+  localStorage.setItem(key, JSON.stringify(state));
 
-export const getFromLocalStorage = () => JSON.parse(localStorage[storageKey]);
+export const getFromLocalStorage = (key = storageKey) =>
+  JSON.parse(localStorage[key]);
 
 export function commentFormat(content, user) {
   const date = new Date();
