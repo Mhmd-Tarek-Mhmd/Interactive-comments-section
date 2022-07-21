@@ -6,5 +6,5 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 
 ## Links
 
-- Live Site [URL](https://mhmd-tarek-mhmd.github.io/Interactive-comments-section)
+- Live Site [URL](https://marvelous-longma-f68df1.netlify.app/)
 - Solution [URL](https://www.frontendmentor.io/solutions/interactive-comments-section-Roaw6aXXMb)
