@@ -19,8 +19,8 @@
   --body-fs: 16px;
   --body-ff: "Rubik", sans-serif;
   --body-fs: var(--fw-regular);
-  --body-bgc: var(--light-gray);
   --body-cl: var(--grayish-blue);
+  --body-bgc: var(--very-light-gray);
 
   --headings-fw: var(--fw-bold);
   --headings-cl: var(--dark-blue);
