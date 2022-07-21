@@ -5,6 +5,7 @@ import { useFetch } from "./hooks";
 import { storageKey, getFromLocalStorage } from "./utils/helpers";
 
 import Grid from "./components/Grid";
+import Loader from "./components/Loader";
 import { Add } from "./components/Forms";
 
 function App() {
@@ -20,11 +21,13 @@ function App() {
     }
   }, [isLoading]);
 
-  return (
+  return comments.state.length ? (
     <div role="region" aria-label="Comments section">
       <Grid />
-      {authedUser.state && <Add />}
+      <Add />
     </div>
+  ) : (
+    <Loader />
   );
 }
 

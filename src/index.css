@@ -46,7 +46,6 @@
 
 body {
   line-height: 1;
-  min-height: 100vh;
   color: var(--body-cl);
   font-size: var(--body-fs);
   font-family: var(--body-ff);
@@ -78,6 +77,9 @@ strong {
 */
 
 body {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
   padding-block: 65px;
 }
 #root {
