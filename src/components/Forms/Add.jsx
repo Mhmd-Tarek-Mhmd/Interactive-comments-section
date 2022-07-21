@@ -24,7 +24,7 @@ function Add({ parent, toggleIsAddReply }) {
       className={`${addForm} ${parent ? reply : comment}`}
       onSubmit={handleSubmit}
     >
-      <UserImage user={authedUser.state} />
+      {authedUser.state && <UserImage user={authedUser.state} />}
       <textarea
         value={content}
         placeholder={`Add a ${parent ? "reply" : "comment"}...`}
