@@ -7,4 +7,4 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Links
 
 - Live Site [URL](https://mhmd-tarek-mhmd.github.io/Interactive-comments-section)
-- Solution [URL](https://www.frontendmentor.io/solutions/interactive-comments-section-)
+- Solution [URL](https://www.frontendmentor.io/solutions/interactive-comments-section-Roaw6aXXMb)
