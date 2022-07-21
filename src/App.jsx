@@ -9,16 +9,16 @@ import { Add } from "./components/Forms";
 
 function App() {
   const { authedUser, comments } = useContext(Context);
-  const [data] = useFetch("data.json");
+  const [data, isLoading] = useFetch("data.json");
 
   useEffect(() => {
-    if (data) {
+    if (!isLoading) {
       authedUser.actions.setAuthedUser(data.currentUser);
       localStorage[storageKey]
         ? comments.actions.setComments(getFromLocalStorage())
         : comments.actions.setComments(data.comments);
     }
-  }, [data]);
+  }, [isLoading]);
 
   return (
     <div role="region" aria-label="Comments section">
