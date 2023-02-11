@@ -109,7 +109,7 @@ function Counter({ id, parentId, score }) {
   };
 
   return (
-    <div className={counter} aria-label={`This comment's score is ${score}`}>
+    <div className={counter}>
       <button
         ref={increaseRef}
         aria-label="Increase score"
