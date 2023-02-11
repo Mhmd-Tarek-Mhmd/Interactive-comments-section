@@ -11,12 +11,14 @@ function Add({ parent, toggleIsAddReply }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    parent
-      ? comments.actions.addReply(parent.id, content, parent.user.username)
-      : comments.actions.addComment(content);
+    if (content) {
+      parent
+        ? comments.actions.addReply(parent.id, content, parent.user.username)
+        : comments.actions.addComment(content);
 
-    setContent("");
-    toggleIsAddReply && toggleIsAddReply();
+      setContent("");
+      toggleIsAddReply && toggleIsAddReply();
+    }
   };
 
   return (
