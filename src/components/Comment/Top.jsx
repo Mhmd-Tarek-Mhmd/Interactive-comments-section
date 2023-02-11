@@ -23,9 +23,7 @@ function Top({ user, timestamp, isMobileMedia, id, parentId, toggleIsUpdate, tog
             {user.username}
             {authedUser.state.username === user.username && <span>you</span>}
           </h2>
-          <time>
-            {relativeTime}
-          </time>
+          <span>{relativeTime}</span>
         </div>
 
         <Controls
