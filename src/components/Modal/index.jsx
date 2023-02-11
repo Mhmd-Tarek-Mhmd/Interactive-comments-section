@@ -42,7 +42,7 @@ function Modal() {
     return () => window.removeEventListener("keydown", handleTrapFocus);
   }, [modal.isOpened]);
 
-  return (
+  return modal.isOpened ? (
     <div className={backdrop} hidden={!modal.isOpened}>
       <div
         className={dialog}
@@ -69,7 +69,7 @@ function Modal() {
         </form>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Modal;
